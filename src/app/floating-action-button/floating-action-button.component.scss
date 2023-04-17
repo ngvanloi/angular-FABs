@@ -1,0 +1,124 @@
+// @use '../../styles/lib/material3/material3-placeholder.scss';
+$floating-action-button-height: 40px;
+
+.fixed-top-left {
+  top: 40px;
+  left: 40px;
+}
+.fixed-top-right {
+  top: 40px;
+  right: 40px;
+}
+.fixed-bottom-left {
+  bottom: 40px;
+  left: 40px;
+}
+.fixed-bottom-right {
+  bottom: 40px;
+  right: 40px;
+}
+.floating-action-button {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: $floating-action-button-height;
+  min-width: $floating-action-button-height;
+  border-radius: 10px;
+  border: none;
+  padding: 0px;
+
+  .floating-action-button-state-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: inherit;
+    width: 100%;
+    height: 100%;
+  }
+
+  .floating-action-button-wrapper {
+    display: flex;
+    &:hover + .floating-action-button-label {
+      display: flex;
+    }
+  }
+
+  .floating-action-button-icon {
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // flex: 1;
+    width: 18px;
+    height: 18px;
+    // padding-left: 8px;
+    margin: 10px;
+  }
+
+  .floating-action-button-label {
+    // flex: 0;
+    // display: flex;
+    display: none;
+    align-items: center;
+    padding-right: 24px;
+
+    &:only-child {
+      padding-left: 24px;
+    }
+  }
+
+  &:disabled {
+    // Applied the transparent color for disabled on the state-layer
+    // This is contrary to guidelines that put the transparant surface color on the button directly
+    // To avoid conflicting with the label/icon color due to css behavior of opacity attribute
+    background-color: transparent;
+    & > .floating-action-button-state-layer {
+      background-color: var(--md-sys-color-on-surface);
+      opacity: 12%;
+    }
+
+    .floating-action-button-icon,
+    .floating-action-button-label {
+      color: var(--md-sys-color-on-surface);
+      opacity: 38%;
+    }
+  }
+
+  &:hover {
+    box-shadow: 1px 1px 1px var(--md-sys-color-shadow);
+
+    & > .floating-action-button-state-layer {
+      background-color: var(--md-sys-color-on-primary);
+      // opacity: #{material3-placeholder.$hover-state-layer-opacity};
+    }
+
+    .floating-action-button-icon,
+    .floating-action-button-label {
+      color: var(--md-sys-color-on-primary);
+    }
+  }
+
+  &:focus-visible {
+    & > .floating-action-button-state-layer {
+      background-color: var(--md-sys-color-on-primary);
+      // opacity: #{material3-placeholder.$focus-state-layer-opacity};
+    }
+
+    .floating-action-button-icon,
+    .floating-action-button-label {
+      color: var(--md-sys-color-on-primary);
+    }
+  }
+
+  &:active {
+    & > .floating-action-button-state-layer {
+      background-color: var(--md-sys-color-on-primary);
+      // opacity: #{material3-placeholder.$pressed-state-layer-opacity};
+    }
+
+    .floating-action-button-icon,
+    .floating-action-button-label {
+      color: var(--md-sys-color-on-primary);
+    }
+  }
+}
